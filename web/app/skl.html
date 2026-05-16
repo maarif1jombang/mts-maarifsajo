@@ -266,16 +266,25 @@
                     </div>
                     <div class="flex items-center gap-4">
                         <div class="flex-shrink-0 w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center">
+							 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs sm:text-sm text-gray-500">Nilai Rata2</p>
+                            <p id="student-average" class="font-semibold text-sm sm:text-base"></p>
+                        </div>
+                    </div>
+					<div class="flex items-center gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-teal-600 rounded-full flex items-center justify-center">
                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-white"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18M-7.5 12h22.5" /></svg>
                         </div>
                         <div>
-                            <p class="text-xs sm:text-sm text-gray-500">Tanggal Pengumuman</p>
+                            <p class="text-xs sm:text-sm text-gray-500">Tanggal SK</p>
                             <p id="announcement-date" class="font-semibold text-sm sm:text-base"></p>
                         </div>
-                    </div>
+                    </div>					
                 </div>
             </div>
-            <div id="status-container" class="md:col-span-1 text-center p-4 rounded-lg mt-6 md:mt-0">
+            <div id="status-container" class="md:col-span-1 text-center p-2 rounded-lg mt-6 md:mt-0">
                 <div id="status-icon-container" class="mb-0"></div>
                 <p id="student-status" class="font-bold text-2xl uppercase tracking-wider"></p>
             </div>
@@ -299,7 +308,8 @@
     const columns = {
         nama: 'Nama Siswa',
 		nisn: 'NISN',
-        noUjian: 'No. Peserta Ujian',        
+        noUjian: 'No. Peserta Ujian',
+		rata2: 'Rata2',
         tanggalPengumuman: 'Tanggal Pengumuman',
         status: 'Status Kelulusan',
     };
@@ -352,7 +362,8 @@
             announcementDataCache = rawData.map(row => ({
                 nama: row[columns.nama] || '-',
 				nisn: row[columns.nisn] || '-',
-                noUjian: row[columns.noUjian] || '-',                
+                noUjian: row[columns.noUjian] || '-',
+				rata2: row[columns.rata2] || '-',
                 tanggalPengumuman: row[columns.tanggalPengumuman] || '-',
                 status: row[columns.status] || '-',
             }));
@@ -420,6 +431,7 @@
         document.getElementById('student-name').textContent = student.nama;
         document.getElementById('student-exam-number').textContent = student.noUjian;
         document.getElementById('student-nisn').textContent = student.nisn;
+		document.getElementById('student-average').textContent = student.rata2;
         document.getElementById('announcement-date').textContent = student.tanggalPengumuman;
         
         // --- LOGIKA MENAMPILKAN FOTO ---
