@@ -6,7 +6,6 @@
     <title>e-Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/heroicons@2.1.1/24/outline/index.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -70,14 +69,15 @@
 			/* Z-index lebih tinggi untuk header agar tidak tertimpa baris data yang di-scroll */
 			table thead th:last-child {
 				z-index: 20;
-				background-color: #f9fafb; /* Sesuaikan dengan warna background header tabel Anda (contoh: abu-abu sangat terang) */
+				background-color: #f9fafb; /* Sesuaikan dengan warna background header tabel Anda */
 			}
 		}
 		/* ------------------------------------------ */
     </style>
 </head>
 
-<body><div style="background-image:url('https://maarif1jombang.github.io/maarif1jbg/web/img/bg.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;background-attachment: fixed;height: 100%;width: 100%;">
+<body>
+<div style="background-image:url('https://maarif1jombang.github.io/maarif1jbg/web/img/bg.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;background-attachment: fixed;height: 100%;width: 100%;">
 
 	<div class="flex items-center justify-center min-h-screen p-4">
 	
@@ -85,7 +85,7 @@
 		<div id="login-container" class="w-full max-w-sm p-8 space-y-2 card">
 			<div class="text-center">
 				<div class="flex justify-center mx-auto text-teal-600 mb-0">
-					<svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-16">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 4h6m-6 2h3m-3.75 4h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
 						<path stroke-linecap="round" stroke-linejoin="round" d="M12.5 14.25l2.25 2.25 4.5-4.5" />
 					</svg>
@@ -99,7 +99,7 @@
 			</div>
 			<br><br>
 			<div class="space-y-3 px-4 py-4 bg-gray-100 border border-gray-200 rounded-md">
-				<div class="">
+				<div>
 					<div class="input-with-icon">
 						<span class="icon">
 							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -158,7 +158,7 @@
 						</tr>
 					</thead>
 					<tbody id="student-list-body" class="bg-white divide-y">
-						<!-- Rows will be injected here -->
+						<!-- Baris data siswa akan dimuat di sini -->
 					</tbody>
 				</table>
 			</div>
@@ -186,113 +186,137 @@
 					<span id="back-button-text">Kembali</span>
 				</button>
 			</div>
+
+			<!-- LAYOUT FOTO SISWA (Gaya Persis Seperti di e-Ardis / image_8c74bb.png) -->
+			<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+				<div class="flex items-center gap-4">
+					<div class="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-full overflow-hidden bg-teal-600 flex items-center justify-center">
+						<span id="detail-initials" class="text-white text-xl sm:text-2xl font-bold uppercase select-none"></span>
+						<img id="detail-student-photo" src="" alt="Foto Siswa" class="absolute inset-0 w-full h-full object-cover object-top">
+					</div>
+					<div class="mt-2">
+						<p id="student-name" class="font-semibold text-sm sm:text-base"></p>
+						<div class="flex flex-row gap-1 items-center mt-1">
+							<p class="text-xs sm:text-sm text-gray-500">NISN</p>
+							<p id="student-nisn" class="text-xs sm:text-sm text-gray-700 bg-teal-50 px-1.5 py-0.5 rounded"></p>
+						</div>                    
+					</div>
+				</div>
+			</div>
 			
-			<!-- INFO SISWA (List Vertikal Rapi dengan Titik Dua Lurus) -->
-			<div class="bg-gray-50 border rounded-lg p-4 md:p-6 mb-6">
-				<!-- Menggunakan grid 2 kolom utama pada layar besar -->
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-xs sm:text-sm">
+			<div class="flex flex-row gap-1 mt-4 mb-2">
+				<h3 class="font-semibold text-sm sm:text-base">Administrasi Kelas</h3>
+				<h3 id="student-class" class="font-semibold text-sm sm:text-base"></h3>
+			</div>
+			
+			<!-- INFO SISWA (Layout Identitas Premium dengan Icon di Kiri - Persis Seperti e-Ardis) -->
+			<div class="bg-gray-50 border rounded-lg p-6">
+				<!-- Grid responsif untuk menampung data informasi identitas -->
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-gray-700">
 					
-					<!-- Kolom Kiri -->
-					<div class="grid grid-cols-[auto_min-content_1fr] gap-x-4 gap-y-2 items-center">
-						<!-- Nama -->
-						<div class="text-gray-500 whitespace-nowrap">Nama Siswa</div>
-						<div class="text-gray-500">:</div>
-						<div id="student-name" class="font-bold text-gray-800"></div>
-
-						<!-- NISN -->
-						<div class="text-gray-500 whitespace-nowrap">NISN</div>
-						<div class="text-gray-500">:</div>
-						<div id="student-nisn" class="font-bold text-gray-800"></div>
-
-						<!-- Kelas -->
-						<div class="text-gray-500 whitespace-nowrap">Kelas</div>
-						<div class="text-gray-500">:</div>
-						<div id="student-class" class="font-bold text-gray-800"></div>
+					<!-- Tahun Ajaran -->
+					<div class="flex items-center gap-4">
+						<div class="flex-shrink-0 w-10 h-10 rounded-lg bg-teal-50 border border-teal-600 flex items-center justify-center shadow-sm">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+							</svg>
+						</div>
+						<div>
+							<p class="text-xs sm:text-sm text-gray-500">Tahun Pelajaran</p>
+							<p id="student-tapel" class="font-semibold text-sm sm:text-base text-gray-800"></p>
+						</div>
+					</div>
+					
+					<!-- Update -->
+					<div class="flex items-center gap-4">
+						<div class="flex-shrink-0 w-10 h-10 rounded-lg bg-teal-50 border border-teal-600 flex items-center justify-center shadow-sm">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+							</svg>
+						</div>
+						<div>
+							<p class="text-xs sm:text-sm text-gray-500">Update</p>
+							<p id="student-update" class="font-semibold text-sm sm:text-base text-gray-800"></p>
+						</div>
 					</div>
 
-					<!-- Kolom Kanan -->
-					<div class="grid grid-cols-[auto_min-content_1fr] gap-x-4 gap-y-2 items-center self-start">
-						<!-- Administrasi -->
-						<div class="text-gray-500 whitespace-nowrap">Administrasi</div>
-						<div class="text-gray-500">:</div>
-						<div class="flex flex-row gap-1">
-							<p class="font-bold text-gray-800">Rp.</p>
-							<p id="student-admin" class="font-bold text-gray-800"></p>
+					<!-- Administrasi -->
+					<div class="flex items-center gap-4">
+						<div class="flex-shrink-0 w-10 h-10 rounded-lg bg-teal-50 border border-teal-600 flex items-center justify-center shadow-sm">
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600">
+								<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 4h6m-6 2h3m-3.75 4h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" />
+							</svg>
 						</div>
-						
-						<!-- Update -->
-						<div class="text-gray-500 whitespace-nowrap">Update</div>
-						<div class="text-gray-500">:</div>
-						<div id="student-update" class="font-bold text-gray-800"></div>
+						<div>
+							<p class="text-xs sm:text-sm text-gray-500">Administrasi</p>
+							<div class="flex flex-row gap-1">
+								<p class="font-semibold text-sm sm:text-base text-gray-800">Rp.</p>
+								<p id="student-admin" class="font-semibold text-sm sm:text-base text-gray-800"></p>
+							</div>
+						</div>
 					</div>
 
 				</div>
 			</div>
 
 			<!-- TABEL ADMINISTRASI (Grid 3 Kolom) -->
-			<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6">
-				<!-- Fungsi Helper untuk Header Tabel Detail -->
-				<script>
-					const tableHeaderHTML = `
-						<thead class="text-xs text-gray-700 bg-gray-50 border-b">
-							<tr>
-								<th scope="col" class="w-1/2 px-2" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">RINCIAN</th>
-								<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 7</th>
-								<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 8</th>
-								<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 9</th>
-							</tr>
-						</thead>
-					`;
-				</script>
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-5 mt-5">
 
 				<!-- Kolom 1: BP3 -->
-				<div>
-					<h3 class="font-bold text-gray-800 flex items-center gap-2 text-sm sm:text-base mb-2">
-						<span>💰</span> Administrasi BP3
-					</h3>
-					<div class="bg-white rounded-lg border flex flex-col">
-						<div class="overflow-x-auto flex-grow">
-							<table class="w-max min-w-full text-sm table-fixed admin-table compact-mobile">
-								<script>document.write(tableHeaderHTML)</script>
-								<tbody id="monthly-payment-body" class="bg-white divide-y"></tbody>
-							</table>
-						</div>
+				<div><div class="bg-white rounded-lg border flex flex-col">
+					<div class="overflow-x-auto flex-grow">
+						<table class="w-max min-w-full text-sm table-fixed admin-table compact-mobile">
+							<thead class="text-xs text-gray-700 bg-gray-50 border-b">
+								<tr>
+									<th scope="col" class="w-1/2 px-2" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">ADM. BP3</th>
+									<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 7</th>
+									<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 8</th>
+									<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 9</th>
+								</tr>
+							</thead>
+							<tbody id="monthly-payment-body" class="bg-white divide-y"></tbody>
+						</table>
 					</div>
-				</div>
+				</div></div>
 				
 				<!-- Kolom 2: Daftar Ulang -->
-				<div>
-					<h3 class="font-bold text-gray-800 flex items-center gap-2 text-sm sm:text-base mb-2">
-						<span>📝</span> Daftar Ulang
-					</h3>
-					<div class="bg-white rounded-lg border flex flex-col">
-						<div class="overflow-x-auto flex-grow">
-							<table class="w-max min-w-full text-sm table-fixed admin-table compact-mobile">
-								<script>document.write(tableHeaderHTML)</script>
-								<tbody id="registration-payment-body" class="bg-white divide-y"></tbody>
-							</table>
-						</div>
+				<div><div class="bg-white rounded-lg border flex flex-col">
+					<div class="overflow-x-auto flex-grow">
+						<table class="w-max min-w-full text-sm table-fixed admin-table compact-mobile">
+							<thead class="text-xs text-gray-700 bg-gray-50 border-b">
+								<tr>
+									<th scope="col" class="w-1/2 px-2" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">DAFTAR ULANG</th>
+									<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 7</th>
+									<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 8</th>
+									<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 9</th>
+								</tr>
+							</thead>
+							<tbody id="registration-payment-body" class="bg-white divide-y"></tbody>
+						</table>
 					</div>
-				</div>
+				</div></div>
 				
 				<!-- Kolom 3: Ujian -->
-				<div>
-					<h3 class="font-bold text-gray-800 flex items-center gap-2 text-sm sm:text-base mb-2">
-						<span>🎓</span> Ujian
-					</h3>
-					<div class="bg-white rounded-lg border flex flex-col">
-						<div class="overflow-x-auto flex-grow">
-							<table class="w-max min-w-full text-sm table-fixed admin-table compact-mobile">
-								<script>document.write(tableHeaderHTML)</script>
-								<tbody id="exam-payment-body" class="bg-white divide-y"></tbody>
-							</table>
-						</div>
+				<div><div class="bg-white rounded-lg border flex flex-col">
+					<div class="overflow-x-auto flex-grow">
+						<table class="w-max min-w-full text-sm table-fixed admin-table compact-mobile">
+							<thead class="text-xs text-gray-700 bg-gray-50 border-b">
+								<tr>
+									<th scope="col" class="w-1/2 px-2" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">ADM. UJIAN</th>
+									<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 7</th>
+									<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 8</th>
+									<th scope="col" class="w-1/6 border-l" style="padding-top: 0px;padding-bottom: 0px;height: 38px;">KLS 9</th>
+								</tr>
+							</thead>
+							<tbody id="exam-payment-body" class="bg-white divide-y"></tbody>
+						</table>
 					</div>
-				</div>
+				</div></div>
 
 			</div>
 		</div>
 	</div>
+</div>
 	
 <script>
     // --- KONFIGURASI ---
@@ -304,7 +328,6 @@
     const detailContainer = document.getElementById('detail-container');
     const loginButton = document.getElementById('login-button');
     const backButton = document.getElementById('back-button');
-    const backButtonText = document.getElementById('back-button-text');
     const nisnInput = document.getElementById('nisn');
     const errorMessage = document.getElementById('error-message');
     const studentListBody = document.getElementById('student-list-body');
@@ -354,6 +377,14 @@
         }, {});
     }
 
+    function getInitials(name) {
+        if (!name) return '??';
+        const parts = name.trim().split(/\s+/);
+        if (parts.length === 0) return '??';
+        if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+        return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+
     async function fetchAndProcessData() {
         if (studentListCache) return studentListCache;
         try {
@@ -368,7 +399,7 @@
                 nisn: row['NISN'],
                 nama: row['Nama Siswa'],
                 kelas: row['Kelas'],
-                tahun_pelajaran: row['TaPel'],
+                tapel: row['TaPel'],
 				admin: row['Admin'],
 				update: row['Update'],
                 classLevel: parseClassLevel(row['Kelas'])
@@ -404,9 +435,24 @@
         const sortedRecords = [...studentRecords].sort((a, b) => b.classLevel - a.classLevel);
         const latestRecord = sortedRecords[0];
 
+		// Isi data ke layout foto/ID Card minimalis bulat
+		const photoEl = document.getElementById('detail-student-photo');
+		const initialsEl = document.getElementById('detail-initials');
+		const expectedPhotoUrl = 'https://maarif1jombang.github.io/foto/foto_siswa/' + latestRecord.nisn + '.jpg';
+		
+		initialsEl.textContent = getInitials(latestRecord.nama);
+		photoEl.style.display = 'block';
+		photoEl.src = expectedPhotoUrl;
+		
+		photoEl.onerror = function() {
+			this.style.display = 'none';
+		};
+
+		// Isi data ke list vertikal info siswa
         document.getElementById('student-name').textContent = latestRecord.nama;
         document.getElementById('student-class').textContent = latestRecord.kelas;
         document.getElementById('student-nisn').textContent = latestRecord.nisn;
+		document.getElementById('student-tapel').textContent = latestRecord.tapel;
 		document.getElementById('student-admin').textContent = latestRecord.admin;
 		document.getElementById('student-update').textContent = latestRecord.update;
         
@@ -443,12 +489,6 @@
         populateGrid('registration-payment-body', registrationPaymentKeys);
         populateGrid('exam-payment-body', examPaymentKeys);
 
-        if (isFromSearchList) {
-            backButtonText.textContent = "Kembali";
-        } else {
-            backButtonText.textContent = "Kembali";
-        }
-
         loginContainer.classList.add('hidden');
         listContainer.classList.add('hidden');
         detailContainer.classList.remove('hidden');
@@ -459,14 +499,12 @@
         studentListBody.innerHTML = '';
         const nisnKeys = Object.keys(groupedStudents);
 
-        // MODIFIED: Added index parameter
         nisnKeys.forEach((nisn, index) => {
             const records = groupedStudents[nisn];
             const latestRecord = records.sort((a, b) => b.classLevel - a.classLevel)[0];
 
             const tr = document.createElement('tr');
 			tr.className = 'bg-white hover:bg-teal-50 transition duration-150 border-b';
-            // MODIFIED: Added Number column (index + 1)
             tr.innerHTML = `
                 <td class="whitespace-nowrap px-4 py-3 sm:px-6 text-gray-900 text-center font-medium">${index + 1}</td>
                 <td class="whitespace-nowrap px-4 py-3 sm:px-6 text-gray-900 text-left font-medium ">${latestRecord.nama}</td>
@@ -548,6 +586,7 @@
         isFromSearchList = false;
     }
 
+    // Loader Function
     function setLoading(isLoading) {
         const btn = loginButton;
         const loader = document.getElementById('loader');

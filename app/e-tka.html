@@ -45,18 +45,11 @@
         .input-with-icon input {
             padding-left: 40px;
         }
-        /* Tambahan style untuk foto */
         #photo-container {
             transition: all 0.3s ease;
         }
-        /* Style untuk Tabel */
-        .table-responsive {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-		/* --- Kode untuk Sticky Kolom Aksi di HP --- */
+		/* --- Sticky Kolom Aksi di HP --- */
 		@media (max-width: 768px) {
-			/* Menargetkan kolom paling kanan (terakhir) pada header dan isi tabel */
 			table th:last-child,
 			table td:last-child {
 				position: sticky !important;
@@ -66,22 +59,20 @@
 				box-shadow: -4px 0 6px -2px rgba(0, 0, 0, 0.05); 
 			}
 			
-			/* Z-index lebih tinggi untuk header agar tidak tertimpa baris data yang di-scroll */
 			table thead th:last-child {
 				z-index: 20;
 				background-color: #f9fafb;
 			}
 
-			/* Jika baris tabel Anda memiliki efek hover, pastikan kolom sticky ikut berubah warna */
 			table tbody tr:hover td:last-child {
 				background-color: #f3f4f6;
 			}
 		}
-		/* ------------------------------------------ */
     </style>
 </head>
 
-<body><div style="background-image:url('https://maarif1jombang.github.io/maarif1jbg/web/img/bg.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;background-attachment: fixed;height: 100%;width: 100%;">
+<body>
+<div style="background-image:url('https://maarif1jombang.github.io/maarif1jbg/web/img/bg.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;background-attachment: fixed;height: 100%;width: 100%;">
 
 	<div class="flex items-center justify-center min-h-screen p-4">
 
@@ -159,7 +150,7 @@
 						</tr>
 					</thead>
 					<tbody id="student-list-body" class="divide-y divide-gray-200">
-						<!-- Data akan di-inject lewat JS -->
+						<!-- Data di-inject lewat JS -->
 					</tbody>
 				</table>
 			</div>
@@ -189,10 +180,8 @@
 			
 			<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
 				<div class="flex items-center gap-4">
-					<div id="photo-container" class="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-full overflow-hidden bg-teal-50 flex items-center justify-center">
-						<svg id="default-icon" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 sm:w-10 sm:h-10 text-white" viewBox="0 0 20 20" fill="currentColor">
-							<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-						</svg>
+					<div id="photo-container" class="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-full overflow-hidden bg-teal-600 flex items-center justify-center">
+						<span id="student-initials" class="text-white text-xl sm:text-2xl font-bold uppercase select-none"></span>
 						<img id="student-photo" src="" alt="Foto Siswa" class="absolute inset-0 w-full h-full object-cover object-top hidden">
 					</div>
 					<div class="mt-2">
@@ -205,14 +194,14 @@
 				</div>
 			</div>
 			
-			<div class="flex flex-row gap-1 mt-4">
+			<div class="flex flex-row gap-1 mt-4 mb-1">
 				<h3 class="font-semibold text-sm sm:text-base">Hasil TKA Tahun</h3>
 				<h3 id="tahun-pelajaran" class="font-semibold text-sm sm:text-base"></h3>
 			</div>
-			<p class="text-xs md:text-sm text-gray-500 text-justify mb-2">Berdasarkan DHTKA yang telah resmi di umumkan Kemendikdasmen, berikut ini Hasil TKA ananda:</p>
+			<p class="text-xs md:text-sm text-gray-500 text-justify mb-2">Berdasarkan DHTKA yang telah resmi di rilis oleh Kemendikdasmen, berikut ini Hasil TKA ananda:</p>
 			
             <div class="border bg-gray-50 p-6 rounded-lg">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
                     <!-- No. Peserta Ujian -->
                     <div class="flex items-center gap-4">
                         <div class="flex-shrink-0 w-10 h-10 bg-teal-50 border border-teal-600 rounded-lg flex items-center justify-center">
@@ -267,9 +256,9 @@
             </div>
 		</div>
 	</div>
+</div>
 
 <script>
-    // --- KONFIGURASI ---
     const dataSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQpQZ4pCId-9A7g6HcCE7gS4VrRQhgFrzBA4-2WnigOfeSnP1e9qZ0PAHj2F69P_-l25Df1_3P4LPY_/pub?gid=0&single=true&output=csv';
     const photoBaseUrl = 'https://maarif1jombang.github.io/foto/foto_siswa'; 
   
@@ -284,7 +273,6 @@
 		rata2: 'Rata2',
 		tahunPelajaran: 'Tahun Pelajaran'
     };
-    // -------------------
 
     const loginContainer = document.getElementById('login-container');
     const listContainer = document.getElementById('list-container');
@@ -299,20 +287,40 @@
     let announcementDataCache = null;
     let lastView = 'login'; 
 
-    function parseCSV(csvText) {
-        const lines = csvText.split(/\r?\n/).filter(line => line);
-        if (lines.length < 2) return [];
-        const headers = lines[0].split(',').map(h => h.trim());
+    // Robust CSV Parser yang menangani koma dan tanda kutip ganda di dalam sel (seperti e-Ardis)
+    function parseCSV(str) {
+        const arr = [];
+        let quote = false;  
+        let row = 0, col = 0;
+
+        for (let c = 0; c < str.length; c++) {
+            let cc = str[c], nc = str[c+1];
+            arr[row] = arr[row] || [];
+            arr[row][col] = arr[row][col] || '';
+
+            if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+            if (cc == '"') { quote = !quote; continue; }
+            if (cc == ',' && !quote) { ++col; continue; }
+            if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+            if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+            if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+
+            arr[row][col] += cc;
+        }
+        
+        if (arr.length < 2) return [];
+        const headers = arr[0].map(h => h.trim());
         const data = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',');
-            if (values.length >= headers.length) {
-                const obj = {};
-                headers.forEach((header, index) => {
-                    obj[header] = values[index] ? values[index].trim() : '';
-                });
-                data.push(obj);
-            }
+        
+        for (let i = 1; i < arr.length; i++) {
+            const values = arr[i];
+            if (values.length === 1 && values[0].trim() === '') continue;
+            
+            const obj = {};
+            headers.forEach((header, index) => {
+                obj[header] = values[index] ? values[index].trim() : '';
+            });
+            data.push(obj);
         }
         return data;
     }
@@ -324,7 +332,7 @@
             const response = await fetch(dataSheetUrl + cacheBuster);
             if (!response.ok) { throw new Error(`Gagal menghubungi server. Status: ${response.status}`); }
             const csvText = await response.text();
-             if (csvText.trim().toLowerCase().startsWith('<!doctype html')) {
+            if (csvText.trim().toLowerCase().startsWith('<!doctype html')) {
                 errorMessage.textContent = 'Format data salah. Pastikan URL berasal dari "Publikasikan ke web" (sebagai .csv), bukan dari tombol "Bagikan".';
                 errorMessage.classList.remove('hidden');
                 return null;
@@ -350,14 +358,20 @@
         }
     }
 
+    function getInitials(name) {
+        if (!name) return '??';
+        const parts = name.trim().split(/\s+/);
+        if (parts.length === 0) return '??';
+        if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+        return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+
     function showStudentList(students) {
         studentListBody.innerHTML = ''; 
         
         students.forEach((student, index) => {
             const tr = document.createElement('tr');
             tr.className = index === students.length - 1 ? "hover:bg-teal-50" : "border-b border-gray-200 hover:bg-teal-50";
-
-            const photoUrl = student.nisn ? `${photoBaseUrl}/${student.nisn}.jpg` : '';
             
             tr.innerHTML = `
                 <td class="whitespace-nowrap px-4 py-3 sm:px-6 text-sm text-gray-900 text-center font-medium">${index + 1}</td>
@@ -392,7 +406,6 @@
         document.getElementById('student-exam-number').textContent = student.noUjian;
         document.getElementById('student-nisn').textContent = student.nisn;
         
-        // Menggabungkan nilai dan predikat, dengan pengecekan kosong/dash
         const mtkDisplay = (student.nilaiMTK !== '-' && student.nilaiMTK !== '') ? `${student.nilaiMTK} ( ${student.predikatMTK} )` : student.nilaiMTK;
         const binDisplay = (student.nilaiBIN !== '-' && student.nilaiBIN !== '') ? `${student.nilaiBIN} ( ${student.predikatBIN} )` : student.nilaiBIN;
         
@@ -402,11 +415,13 @@
 		document.getElementById('tahun-pelajaran').textContent = student.tahunPelajaran;
         
         const photoContainer = document.getElementById('photo-container');
-        const defaultIcon = document.getElementById('default-icon');
+        const studentInitials = document.getElementById('student-initials');
         const studentPhoto = document.getElementById('student-photo');
 
+        // Reset state awal foto dengan inisial
+        studentInitials.textContent = getInitials(student.nama);
         studentPhoto.classList.add('hidden');
-        defaultIcon.classList.remove('hidden');
+        studentInitials.classList.remove('hidden');
         photoContainer.classList.add('bg-teal-600'); 
 
         if (student.nisn) {
@@ -414,13 +429,13 @@
 
             studentPhoto.onload = function() {
                 studentPhoto.classList.remove('hidden'); 
-                defaultIcon.classList.add('hidden'); 
+                studentInitials.classList.add('hidden'); 
                 photoContainer.classList.remove('bg-teal-600'); 
             };
 
             studentPhoto.onerror = function() {
                 studentPhoto.classList.add('hidden');
-                defaultIcon.classList.remove('hidden');
+                studentInitials.classList.remove('hidden');
                 photoContainer.classList.add('bg-teal-600');
             };
         }
@@ -456,7 +471,6 @@
         if (!allStudents) return;
         
         const searchInputLower = searchInput.toLowerCase();
-
         const studentByNisn = allStudents.find(s => s.nisn === searchInput);
         
         if (studentByNisn) {
@@ -505,14 +519,11 @@
     searchInputElem.addEventListener('keyup', (event) => { if (event.key === 'Enter') handleLogin(); });
 
     async function initialize() {
-        // Tampilkan container login secara langsung
         loginContainer.classList.remove('hidden');
-        // Panggil fungsi pengambilan data ke dalam cache
         fetchAndProcessData();
     }
 
     document.addEventListener('DOMContentLoaded', initialize);
-	
 	document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>

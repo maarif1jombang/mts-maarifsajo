@@ -45,26 +45,9 @@
         .input-with-icon input {
             padding-left: 40px;
         }
-        .status-lulus {
-            background-color: #f0fdf4;
-            border: 1px solid #bbf7d0;
-        }
-        .status-tidak-lulus {
-            background-color: #fef2f2;
-            border: 1px solid #fecaca;
-        }
-        .status-pending {
-            background-color: #f3f4f6;
-            border: 1px solid #e5e7eb;
-        }
         /* Tambahan style untuk foto */
         #photo-container {
             transition: all 0.3s ease;
-        }
-        /* Style untuk Tabel */
-        .table-responsive {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
         }
 		/* --- Kode untuk Sticky Kolom Aksi di HP --- */
 		@media (max-width: 768px) {
@@ -73,28 +56,28 @@
 			table td:last-child {
 				position: sticky !important;
 				right: 0 !important;
-				background-color: #ffffff; /* Harus solid agar teks di belakangnya tidak tembus */
+				background-color: #ffffff; 
 				z-index: 10;
-				/* Memberikan sedikit bayangan di sisi kiri agar terlihat ada pembatas saat digeser */
 				box-shadow: -4px 0 6px -2px rgba(0, 0, 0, 0.05); 
 			}
 			
 			/* Z-index lebih tinggi untuk header agar tidak tertimpa baris data yang di-scroll */
 			table thead th:last-child {
 				z-index: 20;
-				background-color: #f9fafb; /* Sesuaikan dengan warna background header tabel Anda (contoh: abu-abu sangat terang) */
+				background-color: #f9fafb; 
 			}
 
 			/* Jika baris tabel Anda memiliki efek hover, pastikan kolom sticky ikut berubah warna */
 			table tbody tr:hover td:last-child {
-				background-color: #f3f4f6; /* Warna hover standar Tailwind */
+				background-color: #f3f4f6; 
 			}
 		}
 		/* ------------------------------------------ */
     </style>
 </head>
 
-<body><div style="background-image:url('https://maarif1jombang.github.io/maarif1jbg/web/img/bg.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;background-attachment: fixed;height: 100%;width: 100%;">
+<body>
+    <div style="background-image:url('https://maarif1jombang.github.io/maarif1jbg/web/img/bg.jpg');background-size: cover;background-repeat: no-repeat;background-position: center;background-attachment: fixed;height: 100%;width: 100%;">
 
 	<div class="flex items-center justify-center min-h-screen p-4">
 
@@ -112,25 +95,7 @@
 				</div>
 				<h1 class="text-2xl font-bold text-gray-800">Pengumuman Kelulusan</h1>
 				<p class="text-gray-500">MTs Ma'arif 1 Jombang</p>
-			</div>
-			<div id="timer" class="flex justify-center space-x-2 md:space-x-2 text-center pt-0 hidden">
-				<div class="p-4 bg-teal-50 rounded-lg min-w-[75px] md:min-w-[85px]">
-					<span id="days" class="text-4xl md:text-5xl font-bold text-teal-600">--</span>
-					<p class="text-xs md:text-sm text-gray-500">Hari</p>
-				</div>
-				<div class="p-4 bg-teal-50 rounded-lg min-w-[75px] md:min-w-[85px]">
-					<span id="hours" class="text-4xl md:text-5xl font-bold text-teal-600">--</span>
-					<p class="text-xs md:text-sm text-gray-500">Jam</p>
-				</div>
-				<div class="p-4 bg-teal-50 rounded-lg min-w-[75px] md:min-w-[85px]">
-					<span id="minutes" class="text-4xl md:text-5xl font-bold text-teal-600">--</span>
-					<p class="text-xs md:text-sm text-gray-500">Menit</p>
-				</div>
-				<div class="p-4 bg-teal-50 rounded-lg min-w-[75px] md:min-w-[85px]">
-					<span id="seconds" class="text-4xl md:text-5xl font-bold text-teal-600">--</span>
-					<p class="text-xs md:text-sm text-gray-500">Detik</p>
-				</div>
-			</div>		
+			</div>	
 			<p id="countdown-message" class="text-red-500 pt-2 text-sm"></p>
 		</div>
 
@@ -181,7 +146,7 @@
 					<div class="flex-shrink-0 text-teal-600 bg-teal-50 p-2 rounded-lg border border-teal-600">
 						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 md:w-8 md:h-8">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.627 48.627 0 0 1 12 20.904a48.627 48.627 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.57 50.57 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.906 59.906 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5" />
-						</svg>
+					</svg>
 					</div>
 					<div>
 						<h1 class="text-lg md:text-2xl font-bold text-gray-800">Pengumuman Kelulusan</h1>
@@ -196,7 +161,6 @@
 				</button>
 			</div>
 			
-			<!-- Updated Table Wrapper: Matches ardis.html style -->
 			<div class="overflow-x-auto rounded-lg border">
 				<table class="w-full text-sm text-left text-gray-500">
 					<thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b">
@@ -239,10 +203,9 @@
 			
 			<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
 				<div class="flex items-center gap-4">
-					<div id="photo-container" class="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-full overflow-hidden bg-teal-50 flex items-center justify-center">
-						<svg id="default-icon" xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 sm:w-10 sm:h-10 text-white" viewBox="0 0 20 20" fill="currentColor">
-							<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-						</svg>
+					<div id="photo-container" class="relative w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 rounded-full overflow-hidden bg-teal-600 flex items-center justify-center">
+						<!-- Inisial teks sebagai cadangan apabila foto tidak ada -->
+                        <span id="student-initials" class="text-white text-xl sm:text-2xl font-bold uppercase select-none"></span>
 						<img id="student-photo" src="" alt="Foto Siswa" class="absolute inset-0 w-full h-full object-cover object-top hidden">
 					</div>
 					<div class="mt-2">
@@ -255,69 +218,73 @@
 				</div>
 			</div>
 			
-			<h3 class="font-semibold text-sm sm:text-base mt-4">Hasil Pengumuman</h3>
+			<h3 class="font-semibold text-sm sm:text-base mt-4 mb-1">Hasil Pengumuman</h3>
 			<p class="text-xs md:text-sm text-gray-500 text-justify mb-2">Berdasarkan keputusan Rapat Kelulusan, Kepala MTs Ma'arif 1 Jombang menetapkan:</p>
-			<div class="border bg-gray-50 p-6 rounded-lg md:grid md:grid-cols-3 md:gap-2 md:items-center">
-				<div class="md:col-span-2">
-					<div class="grid grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-6">
-						<div class="flex items-center gap-4">
-							<div class="flex-shrink-0 w-10 h-10 bg-teal-50 border border-teal-600 rounded-lg flex items-center justify-center">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" /></svg>
-							</div>
-							<div>
-								<p class="text-xs sm:text-sm text-gray-500">No. Peserta Ujian</p>
-								<p id="student-exam-number" class="font-semibold text-sm sm:text-base"></p>
-							</div>
-						</div>               
-						<div class="flex items-center gap-4">
-							<div class="flex-shrink-0 w-10 h-10 bg-teal-50 border border-teal-600 rounded-lg flex items-center justify-center">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-							</div>
-							<div>
-								<p class="text-xs sm:text-sm text-gray-500">Nilai Rata2</p>
-								<p id="student-average" class="font-semibold text-sm sm:text-base"></p>
-							</div>
-						</div>
-						<div class="flex items-center gap-4">
-							<div class="flex-shrink-0 w-10 h-10 bg-teal-50 border border-teal-600 rounded-lg flex items-center justify-center">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18M-7.5 12h22.5" /></svg>
-							</div>
-							<div>
-								<p class="text-xs sm:text-sm text-gray-500">Tanggal SK</p>
-								<p id="announcement-date" class="font-semibold text-sm sm:text-base"></p>
-							</div>
-						</div>
-						<div class="flex items-center gap-4">
-							<div class="flex-shrink-0 w-10 h-10 bg-teal-50 border border-teal-600 rounded-lg flex items-center justify-center">
-								<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
-							</div>
-							<div>
-								<p class="text-xs sm:text-sm text-gray-500">Tahun Pelajaran</p>
-								<p id="tahun-pelajaran" class="font-semibold text-sm sm:text-base"></p>
-							</div>
-						</div>					
-					</div>
-				</div>
-				<div id="status-container" class="md:col-span-1 text-center p-2 border border-teal-600 rounded-lg mt-6 md:mt-0">
-					<div id="status-icon-container" class="mb-0"></div>
-					<p id="student-status" class="font-bold text-2xl uppercase tracking-wider"></p>
-				</div>
+			
+            <div class="border bg-gray-50 p-6 rounded-lg">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-teal-50 border border-teal-600 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600"><path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" /></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs sm:text-sm text-gray-500">No. Peserta Ujian</p>
+                            <p id="student-exam-number" class="font-semibold text-sm sm:text-base"></p>
+                        </div>
+                    </div>               
+                    <div class="flex items-center gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-teal-50 border border-teal-600 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs sm:text-sm text-gray-500">Nilai Rata2</p>
+                            <p id="student-average" class="font-semibold text-sm sm:text-base"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-teal-50 border border-teal-600 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18M-7.5 12h22.5" /></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs sm:text-sm text-gray-500">Tanggal SK</p>
+                            <p id="announcement-date" class="font-semibold text-sm sm:text-base"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="flex-shrink-0 w-10 h-10 bg-teal-50 border border-teal-600 rounded-lg flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-teal-600"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" /></svg>
+                        </div>
+                        <div>
+                            <p class="text-xs sm:text-sm text-gray-500">Tahun Pelajaran</p>
+                            <p id="tahun-pelajaran" class="font-semibold text-sm sm:text-base"></p>
+                        </div>
+                    </div>					
+                </div>
 			</div>
+
+            <!-- Pesan Jika Lulus -->
+            <div id="pesan-lulus" class="hidden border border-green-200 bg-green-50 p-6 rounded-lg mt-4">
+                <p class="font-semibold text-green-700 text-sm sm:text-base mb-1">Selamat! Anda dinyatakan Lulus</p>
+                <p class="text-xs sm:text-sm text-gray-500 text-justify leading-relaxed">
+                    Kami bangga atas kerja keras Anda selama belajar di MTs Ma'arif 1 Jombang. Tetap rendah hati, pertahankan prestasi, dan melangkahlah ke jenjang berikutnya dengan penuh semangat!
+                </p>
+            </div>
+
+            <!-- Pesan Jika Tidak Lulus -->
+            <div id="pesan-tidak-lulus" class="hidden border border-red-200 bg-red-50 p-6 rounded-lg mt-4">
+                <p class="font-semibold text-red-700 text-sm sm:text-base mb-1">Mohon Maaf, Anda dinyatakan Belum Lulus</p>
+                <p class="text-xs sm:text-sm text-gray-500 text-justify leading-relaxed">
+                    Kami mengapresiasi usaha Anda selama belajar di MTs Ma'arif 1 Jombang. Jangan berkecil hati, ini bukan akhir segalanya. Tetap semangat, terus belajar, dan bersiaplah untuk kesempatan berikutnya!
+                </p>
+            </div>
+
 		</div>
 	</div>
 
 <script>
     // --- KONFIGURASI ---
-    // URL sheet yang berisi data kelulusan siswa
     const dataSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT7DWAJ5w-6p1EbLSrZoURhHSp0ry2iy89EfO3JMcr1rWhPODr76qvTMr3ai2pvZj1SiFM2N5uAKlGF/pub?gid=0&single=true&output=csv';
-
-    // --- KONFIGURASI FOTO ---
-    // Masukkan URL folder tempat foto disimpan.
-    // Contoh: 'https://website-anda.com/data/foto'
-    // Foto HARUS berekstensi .jpg dan nama filenya adalah NISN siswa. (Contoh: 123456.jpg)
     const photoBaseUrl = 'https://maarif1jombang.github.io/foto/foto_siswa'; 
-
-    // URL sheet yang berisi waktu pengumuman.
     const configSheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT7DWAJ5w-6p1EbLSrZoURhHSp0ry2iy89EfO3JMcr1rWhPODr76qvTMr3ai2pvZj1SiFM2N5uAKlGF/pub?gid=1910672228&single=true&output=csv'; 
   
     const columns = {
@@ -332,32 +299,57 @@
     // -------------------
 
     const loginContainer = document.getElementById('login-container');
-    const listContainer = document.getElementById('list-container'); // Container List
+    const listContainer = document.getElementById('list-container');
     const detailContainer = document.getElementById('detail-container');
     const loginButton = document.getElementById('login-button');
-    const logoutButton = document.getElementById('logout-button'); // Tombol kembali di detail
-    const backToSearchFromListButton = document.getElementById('back-to-search-from-list'); // Tombol kembali di list
+    const logoutButton = document.getElementById('logout-button');
+    const backToSearchFromListButton = document.getElementById('back-to-search-from-list');
     const searchInputElem = document.getElementById('searchInput');
     const errorMessage = document.getElementById('error-message');
-    const studentListBody = document.getElementById('student-list-body'); // Tbody tabel
+    const studentListBody = document.getElementById('student-list-body');
 
     let announcementDataCache = null;
-    let lastView = 'login'; // 'login' atau 'list' untuk navigasi tombol kembali
+    let lastView = 'login';
 
-    function parseCSV(csvText) {
-        const lines = csvText.split(/\r?\n/).filter(line => line);
-        if (lines.length < 2) return [];
-        const headers = lines[0].split(',').map(h => h.trim());
+    function parseCSV(str) {
+        const arr = [];
+        let quote = false;  // Penanda jika sedang berada di dalam teks yang diapit "..."
+        let row = 0, col = 0;
+
+        for (let c = 0; c < str.length; c++) {
+            let cc = str[c], nc = str[c+1];
+            arr[row] = arr[row] || [];
+            arr[row][col] = arr[row][col] || '';
+
+            // Jika ketemu dua buah kutip dua ("") di dalam kutip, anggap sebagai satu karakter kutip
+            if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+            // Toggle mode kutip
+            if (cc == '"') { quote = !quote; continue; }
+            // Koma di luar mode kutip berarti pindah kolom
+            if (cc == ',' && !quote) { ++col; continue; }
+            // Enter (CRLF atau LF) di luar mode kutip berarti pindah baris
+            if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+            if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+            if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+
+            // Selain kondisi di atas, tambahkan karakternya ke sel yang sedang aktif
+            arr[row][col] += cc;
+        }
+        
+        if (arr.length < 2) return [];
+        const headers = arr[0].map(h => h.trim());
         const data = [];
-        for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',');
-            if (values.length >= headers.length) {
-                const obj = {};
-                headers.forEach((header, index) => {
-                    obj[header] = values[index] ? values[index].trim() : '';
-                });
-                data.push(obj);
-            }
+        
+        for (let i = 1; i < arr.length; i++) {
+            const values = arr[i];
+            // Abaikan baris kosong
+            if (values.length === 1 && values[0].trim() === '') continue;
+            
+            const obj = {};
+            headers.forEach((header, index) => {
+                obj[header] = values[index] ? values[index].trim() : '';
+            });
+            data.push(obj);
         }
         return data;
     }
@@ -393,26 +385,20 @@
         }
     }
 
-    // Fungsi untuk merender tabel daftar siswa
+    function getInitials(name) {
+        if (!name) return '??';
+        const parts = name.trim().split(/\s+/);
+        if (parts.length === 0) return '??';
+        if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
+        return (parts[0][0] + parts[1][0]).toUpperCase();
+    }
+
     function showStudentList(students) {
-        studentListBody.innerHTML = ''; // Bersihkan isi tabel
+        studentListBody.innerHTML = '';
         
         students.forEach((student, index) => {
             const tr = document.createElement('tr');
-            // Menghapus border-b dari baris terakhir untuk tampilan yang lebih bersih jika di dalam rounded container
             tr.className = index === students.length - 1 ? "hover:bg-teal-50" : "border-b border-gray-200 hover:bg-teal-50";
-
-            // URL Foto
-            const photoUrl = student.nisn ? `${photoBaseUrl}/${student.nisn}.jpg` : '';
-            // HTML untuk kolom foto dengan fallback
-            const photoHtml = `
-                <div class="h-10 w-10 mx-auto rounded-full overflow-hidden bg-gray-200 border border-gray-300 relative">
-                     <svg class="h-full w-full text-gray-400 absolute inset-0" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                    <img src="${photoUrl}" alt="${student.nama}" class="h-full w-full object-cover relative z-10" onerror="this.style.display='none'">
-                </div>
-            `;
 
             tr.innerHTML = `
                 <td class="whitespace-nowrap px-4 py-3 sm:px-6 text-sm text-gray-900 text-center font-medium">${index + 1}</td>
@@ -430,12 +416,10 @@
 
         loginContainer.classList.add('hidden');
         listContainer.classList.remove('hidden');
-        lastView = 'list'; // Set history terakhir adalah list
+        lastView = 'list';
     }
 
-    // Fungsi global agar bisa dipanggil dari onclick tombol "Lihat" di tabel
     window.selectStudentFromList = async function(nisn) {
-        // Kita asumsikan data sudah ada di cache karena sudah di fetch saat search
         if (!announcementDataCache) return;
         const student = announcementDataCache.find(s => s.nisn === nisn);
         if (student) {
@@ -452,64 +436,46 @@
         document.getElementById('announcement-date').textContent = student.tanggalPengumuman;
 		document.getElementById('tahun-pelajaran').textContent = student.tahunPelajaran;
         
-        // --- LOGIKA MENAMPILKAN FOTO ---
         const photoContainer = document.getElementById('photo-container');
-        const defaultIcon = document.getElementById('default-icon');
+        const initialsElem = document.getElementById('student-initials');
         const studentPhoto = document.getElementById('student-photo');
 
-        // Reset state awal (sembunyikan foto, tampilkan icon default)
+        // Set inisial nama siswa
+        initialsElem.textContent = getInitials(student.nama);
+
+        // Reset state awal (sembunyikan foto rill, tampilkan inisial teks)
         studentPhoto.classList.add('hidden');
-        defaultIcon.classList.remove('hidden');
-        photoContainer.classList.add('bg-teal-600'); 
+        initialsElem.classList.remove('hidden');
 
         if (student.nisn) {
             studentPhoto.src = `${photoBaseUrl}/${student.nisn}.jpg`;
 
             studentPhoto.onload = function() {
                 studentPhoto.classList.remove('hidden'); 
-                defaultIcon.classList.add('hidden'); 
-                photoContainer.classList.remove('bg-teal-600'); 
+                initialsElem.classList.add('hidden'); 
             };
 
             studentPhoto.onerror = function() {
                 studentPhoto.classList.add('hidden');
-                defaultIcon.classList.remove('hidden');
-                photoContainer.classList.add('bg-teal-600');
+                initialsElem.classList.remove('hidden');
             };
         }
-        // -------------------------------
 
-        const statusElem = document.getElementById('student-status');
-        const statusContainer = document.getElementById('status-container');
-        const statusIconContainer = document.getElementById('status-icon-container');
-        
+        const pesanLulus = document.getElementById('pesan-lulus');
+        const pesanTidakLulus = document.getElementById('pesan-tidak-lulus');
         const statusText = student.status ? student.status.trim().toLowerCase() : '-';
         
-        statusContainer.classList.remove('status-lulus', 'status-tidak-lulus', 'status-pending');
-        statusElem.classList.remove('text-green-600', 'text-red-600', 'text-gray-600');
-        statusIconContainer.innerHTML = '';
+        pesanLulus.classList.add('hidden');
+        pesanTidakLulus.classList.add('hidden');
         
         if (statusText === 'lulus') {
-            statusElem.textContent = student.status;
-            statusContainer.classList.add('status-lulus');
-            statusElem.classList.add('text-green-600');
-            statusIconContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 md:h-16 md:w-16 mx-auto text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+            pesanLulus.classList.remove('hidden');
         } else if (statusText === 'tidak lulus') {
-            statusElem.textContent = student.status;
-            statusContainer.classList.add('status-tidak-lulus');
-            statusElem.classList.add('text-red-600');
-            statusIconContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 md:h-16 md:w-16 mx-auto text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
-        } else {
-            statusElem.textContent = '-'; 
-            statusContainer.classList.add('status-pending');
-            statusElem.classList.add('text-gray-600');
-            statusIconContainer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 md:h-16 md:w-16 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
-            </svg>`;
+            pesanTidakLulus.classList.remove('hidden');
         }
         
         loginContainer.classList.add('hidden');
-        listContainer.classList.add('hidden'); // Pastikan list hidden
+        listContainer.classList.add('hidden');
         detailContainer.classList.remove('hidden');
     }
     
@@ -539,28 +505,20 @@
         if (!allStudents) return;
         
         const searchInputLower = searchInput.toLowerCase();
-        let studentFound = null;
-        let multipleMatches = [];
-
-        // 1. Cek Exact Match NISN
         const studentByNisn = allStudents.find(s => s.nisn === searchInput);
         
         if (studentByNisn) {
-            // Jika ketemu by NISN, langsung detail
             lastView = 'login';
             showAnnouncementDetails(studentByNisn);
             errorMessage.classList.add('hidden');
         } else {
-            // 2. Jika tidak, cari berdasarkan Nama (contains)
             const nameMatches = allStudents.filter(student => student.nama && student.nama.toLowerCase().includes(searchInputLower));
             
             if (nameMatches.length === 1) {
-                // Satu nama ketemu
                 lastView = 'login';
                 showAnnouncementDetails(nameMatches[0]);
                 errorMessage.classList.add('hidden');
             } else if (nameMatches.length > 1) {
-                // LEBIH DARI SATU -> TAMPILKAN TABEL
                 showStudentList(nameMatches);
                 errorMessage.classList.add('hidden');
             } else {
@@ -571,14 +529,10 @@
     }
 
     function handleLogout() {
-        // Tombol Kembali di halaman Detail
         detailContainer.classList.add('hidden');
-        
         if (lastView === 'list') {
-            // Jika sebelumnya dari list, kembali ke list
             listContainer.classList.remove('hidden');
         } else {
-            // Jika sebelumnya dari login/single result, kembali ke login
             loginContainer.classList.remove('hidden');
             searchInputElem.value = '';
         }
@@ -586,16 +540,15 @@
     }
     
     function handleBackToListSearch() {
-        // Tombol Kembali di halaman List
         listContainer.classList.add('hidden');
         loginContainer.classList.remove('hidden');
-        searchInputElem.value = ''; // Bersihkan input saat kembali total
+        searchInputElem.value = '';
         errorMessage.classList.add('hidden');
     }
 
     loginButton.addEventListener('click', handleLogin);
-    logoutButton.addEventListener('click', handleLogout); // Listener tombol kembali di Detail
-    backToSearchFromListButton.addEventListener('click', handleBackToListSearch); // Listener tombol kembali di List
+    logoutButton.addEventListener('click', handleLogout);
+    backToSearchFromListButton.addEventListener('click', handleBackToListSearch);
     searchInputElem.addEventListener('keyup', (event) => { if (event.key === 'Enter') handleLogin(); });
     
     // --- PENGATURAN WAKTU & INISIALISASI ---
@@ -613,14 +566,11 @@
     function updateCountdown(targetDate) {
 		const now = new Date().getTime();
 		const distance = targetDate - now;
-
-		// Mencari otomatis tombol di form Anda
 		const submitBtn = document.querySelector('button[type="submit"]') || document.querySelector('.card button');
 
 		if (distance <= 0) {
 			clearInterval(countdownInterval);
 			if (submitBtn) {
-				// Kembalikan teks dan aktifkan tombol saat waktu habis
 				submitBtn.textContent = 'Lihat Hasil Pengumuman';
 				submitBtn.disabled = false;
 				submitBtn.classList.remove('cursor-not-allowed', 'opacity-50');
@@ -629,23 +579,18 @@
 			return;
 		}
 
-		// Perhitungan waktu
 		const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 		const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 		const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 		const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-		// Format teks yang akan tampil di tombol
 		let timeString = "";
 		if (days > 0) timeString += `${days} Hari `;
 		timeString += `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
-		// Pindahkan teks hitung mundur ke dalam tombol & nonaktifkan tombol untuk sementara
 		if (submitBtn) {
 			submitBtn.innerHTML = `Dibuka dalam <b>${timeString}</b>`;
 			submitBtn.disabled = true;
-			
-			// Tambahkan efek visual (menggunakan class bawaan Tailwind) agar tombol terlihat tidak aktif
 			submitBtn.classList.add('cursor-not-allowed');
 		}
 	}
@@ -670,11 +615,10 @@
                  throw new Error('Invalid date format');
             }
 			
-			// Selalu tampilkan form (loginContainer) dan pastikan kotak hitung mundur besar disembunyikan
             loginContainer.classList.remove('hidden');
             if (typeof countdownContainer !== 'undefined' && countdownContainer) {
                 countdownContainer.classList.add('hidden');
-                countdownContainer.style.display = 'none'; // Tambahan agar benar-benar tersembunyi
+                countdownContainer.style.display = 'none';
             }
 
             if (new Date().getTime() >= targetDate) {
@@ -689,14 +633,12 @@
             if (!countdownMessage.textContent) {
                  countdownMessage.textContent = 'Gagal mengambil data server.';
             }
-            // Tampilkan container countdown bahkan jika ada error untuk menampilkan pesan error
             countdownContainer.classList.remove('hidden');
             loginContainer.classList.add('hidden');
         }
     }
 
     document.addEventListener('DOMContentLoaded', initialize);
-	
 	document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 </body>
